@@ -57,10 +57,10 @@ let newCantidad = 0
 
 function costoTotal() {
 
-    let precioA = productoA  * 250
-    let precioB = productoB  * 450
-    let precioC = productoC  * 180
-    let precioD = productoD  * 1200
+    let precioA = productoA * 250
+    let precioB = productoB * 450
+    let precioC = productoC * 180
+    let precioD = productoD * 1200
 
     let precioTotal = precioA + precioB + precioC + precioD
 
@@ -73,7 +73,7 @@ function agregar(opcion2) {
         case '1':
             alert("cuantas cervezas quiere agregar")
             newCantidad = parseInt(prompt("ingrese canditdad"))
-            productoA =  productoA + newCantidad 
+            productoA = productoA + newCantidad
             break
         case '2':
             alert("cuantos vinos quiere agregar")
@@ -83,12 +83,12 @@ function agregar(opcion2) {
         case '3':
             alert("cuantos Kg de pan quiere agregar")
             newCantidad = parseFloat(prompt("ingrese canditdad"))
-            productoC =  productoC + newCantidad 
+            productoC = productoC + newCantidad
             break
         case '4':
             alert("cuantos Kg de carne quiere agregar")
             newCantidad = parseFloat(prompt("ingrese canditdad"))
-            productoD = productoD + newCantidad 
+            productoD = productoD + newCantidad
             break
         default:
             alert("Por favor ingrese una opción correcta")
@@ -102,67 +102,67 @@ function quitar(opcion3) {
 
     switch (opcion3) {
         case '1':
-            if(productoA == 0){
+            if (productoA == 0) {
                 alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
                 break
             }
             alert(`Usted tiene una cantidad de ${productoA} del producto seleccionado, cuantas desea sacar`)
             newCantidad = parseInt(prompt("ingrese canditdad"))
             control = productoA
-            productoA =  productoA - newCantidad 
-            while(productoA <= -1){
+            productoA = productoA - newCantidad
+            while (productoA <= -1) {
                 alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                productoA =  control
+                productoA = control
                 newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                productoA =  productoA - newCantidad 
+                productoA = productoA - newCantidad
             }
             break
         case '2':
-            if(productoB == 0){
+            if (productoB == 0) {
                 alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
                 break
             }
             alert(`Usted tiene una cantidad de ${productoB} del producto seleccionado, cuantas desea sacar`)
             newCantidad = parseInt(prompt("ingrese canditdad"))
             control = productoB
-            productoA =  productoB - newCantidad 
-            while(productoB <= -1){
+            productoA = productoB - newCantidad
+            while (productoB <= -1) {
                 alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                productoB =  control
+                productoB = control
                 newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                productoB =  productoB - newCantidad 
+                productoB = productoB - newCantidad
             }
             break
         case '3':
-            if(productoC == 0){
+            if (productoC == 0) {
                 alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
                 break
             }
             alert(`Usted tiene una cantidad de ${productoC} del producto seleccionado, cuantas desea sacar`)
             newCantidad = parseInt(prompt("ingrese canditdad"))
             control = productoC
-            productoC =  productoC - newCantidad 
-            while(productoC <= -1){
+            productoC = productoC - newCantidad
+            while (productoC <= -1) {
                 alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                productoC =  control
+                productoC = control
                 newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                productoC =  productoC - newCantidad 
+                productoC = productoC - newCantidad
             }
             break
         case '4':
-            if(productoD == 0){
+            if (productoD == 0) {
                 alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
                 break
             }
             alert(`Usted tiene una cantidad de ${productoD} del producto seleccionado, cuantas desea sacar`)
             newCantidad = parseInt(prompt("ingrese canditdad"))
             control = productoD
-            productoD =  productoD - newCantidad 
-            while(productoD <= -1){
+            productoD = productoD - newCantidad
+            while (productoD <= -1) {
                 alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                productoD =  control
+                productoD = control
                 newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                productoD =  productoD - newCantidad 
+                productoD = productoD - newCantidad
             }
             break
         default:
