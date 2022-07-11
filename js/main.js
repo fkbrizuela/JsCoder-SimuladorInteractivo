@@ -90,9 +90,6 @@ function agregar(opcion2) {
             newCantidad = parseFloat(prompt("ingrese canditdad"))
             productoD = productoD + newCantidad
             break
-        default:
-            alert("Por favor ingrese una opción correcta")
-            break
     }
 }
 
@@ -175,6 +172,9 @@ alert("Si desea finalizar su compra y calcular el costo total elija la opcion 1\
 
 let opcion = (prompt("Escriba Opción 1, 2 o 3"))
 
+while(opcion != '1' && opcion != '2' && opcion != '3'){
+    opcion = prompt("Elija una opcion opción correcta:\n-1\n-2\n-3")
+}
 
 switch (opcion) {
 
@@ -186,7 +186,10 @@ switch (opcion) {
 
     case '2':
         alert("Que producto desea agregar")
-        let opcion2 = (prompt("Elija una opcion\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne"))
+        let opcion2 = prompt("Elija una opcion\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne")
+        while(opcion2 != '1' && opcion2 != '2' && opcion2 != '3' && opcion2 != '4'){
+            opcion2 = prompt("Elija una opcion opción correcta:\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne")
+        }
         agregar(opcion2)
         const mostrarPrecioDos = costoTotal()
         alert(`El precio total es de $${mostrarPrecioDos}`)
@@ -196,6 +199,9 @@ switch (opcion) {
     case '3':
         alert("Que producto desea quitar")
         let opcion3 = (prompt("Elija una opcion\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne"))
+        while(opcion3 != '1' && opcion3 != '2' && opcion3 != '3' && opcion3 != '4'){
+            opcion3 = prompt("Elija una opcion opción correcta:\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne")
+        }
         quitar(opcion3)
         const mostrarPrecioTres = costoTotal()
         alert(`El precio total es de $${mostrarPrecioTres}`)
