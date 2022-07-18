@@ -1,68 +1,94 @@
-/* let numero = prompt('Ingrese un número cualquiera');
-let string = prompt("Ingrese una palabra cualquiera")
-let numeroDos = prompt("Por favor ingrese otro número nuevamente")
+//------------------------Desfio complementario - Incorporar Arrays -----------------//
+//------------------------ CARGA DE PRODUCTOS - ADMINISTRADOR -------------------------//
 
-if (numero >= 1000) {
-    alert(`el primer número ingresado: '${numero}', es mayor a mil`)
-} else {
-    alert(`el número ingresado es menor a mil`)
+alert("Carga de productos")
+
+let cantidad = parseInt(prompt("ingrese la cantidad de productos que quiera ingresar"))
+
+alert("Una vez ingresada la cantidad, ahora cargaremos los datos de todos los productos a ingresar")
+
+let products = [];
+
+let idProduct = 0
+
+class Product {
+
+    constructor(id, name, price, stock) {
+
+        this.idProduct = id;
+        this.name = name.toUpperCase()
+        this.price = price
+        this.stock = stock
+    }
+
+    priceIva(array){
+        let impuesto = this.price * 0.21
+        let priceIva = this.price + impuesto
+        return priceIva
+    }
+
+    descuento(array){
+        
+    }
 }
 
-if (string === "Hola") {
-    alert("Hola bienvenid@ a CoderHouse")
-    console.log("Hola bienvenid@ a CoderHouse")
-} else {
-    alert("Siempre salude al ingresar por favor")
-    console.log("Siempre salude al ingresar por favor")
+for (let i = 0; i < cantidad; i++) {
+
+
+    let nameUser = (prompt("ingrese nombre del producto"))
+
+    let priceUser = parseFloat(prompt("ingrese el precio del del producto"))
+
+    let stockUser = parseInt(prompt("ingrese la cantidad del producto en stock"))
+
+    products.push(new Product(idProduct, nameUser, priceUser, stockUser))
+
+    idProduct = products.length
+
 }
 
-if (numeroDos >= 10 && numeroDos <= 50) {
-    alert(`el segundo número ingresado '${numeroDos}' está entre 10 y 50`)
-} else {
-    alert(`el segundo número ingresado '${numeroDos}' no está entre 10 y 50`)
-}
+console.log(products)
 
-alert("Tablas de multiplicar")
-let numeroMult = parseInt(prompt("Por favor ingrese un número multiplicador para ver su tabla correspondiente"))
 
-for (let i = 0; i < 11; i++) {
-    let numeroBase = numeroMult * i;
-    alert(numeroMult + " x " + i + " = " + numeroBase)
-}
+function mostrar (products, index){
 
-alert("Control de ingreso - Unicamete mayores de 25 años")
-let edadIn = parseInt(prompt("Por favor ingrese sus edad"))
+        let seeProduct = ''
 
-while (edadIn < 25) {
-    let edadControl = 25;
-    let edadOut = edadControl - edadIn;
-    alert(`su edad es: ${edadIn}, es menor a ${edadControl}, por favor vuelva en ${edadOut} años`)
-    alert("Siguiente por favor")
-    edadIn = parseInt(prompt("Ingrese su edad"))
-}
+        products.forEach((el, index)=>{
+        seeProduct +=(index + 1)+"-"+"Nombre: " + el.name + ' - ' + "Precio: " + el.price + "\n"  
+    })
+    console.log(seeProduct)
+    return seeProduct
+} //aqui "el.price" es de type float, al precio cuando guardo lo parseo flotante ¿al concatenarlo se parsea solo?
 
-alert("Bienvenido") */
+alert("Los productos cargados Son:\n" + mostrar(products))
 
-alert("De la siguiente lista de productos indique cuantos quiere de cada uno")
+// ------------------- CARRITO DE COMPRAS - Usuario ---------------------------------//
 
-let productoA = parseInt(prompt("Cerveza, costo $250 c/u"))
+alert("Carrito de compras!\nDe los productos de la siguiente lista que desea comprar\n"+ mostrar(products))
 
-let productoB = parseInt(prompt("Vino, costo $450 c/u"))
+//1° Desafio Obligatorio Simulador interactivo
 
-let productoC = parseFloat(prompt("Pan, costo $180 x Kg"))
+alert("Ingrese la cantidad de productos de quedesa comprar")
 
-let productoD = parseFloat(prompt("Carne, costo $1200 x Kg"))
+let product1 = parseInt(prompt("Cerveza, costo $250 c/u"))
+
+let product2 = parseInt(prompt("Vino, costo $450 c/u"))
+
+let product3 = parseFloat(prompt("Pan, costo $180 x Kg"))
+
+let product4 = parseFloat(prompt("Carne, costo $1200 x Kg"))
 
 let newCantidad = 0
 
 function costoTotal() {
 
-    let precioA = productoA * 250
-    let precioB = productoB * 450
-    let precioC = productoC * 180
-    let precioD = productoD * 1200
+    let price1 = product1 * 250
+    let price2 = product2 * 450
+    let price3 = product3 * 180
+    let price4 = product4 * 1200
 
-    let precioTotal = precioA + precioB + precioC + precioD
+    let precioTotal = price1 + price2 + price3 + price4
 
     return precioTotal
 }
@@ -73,22 +99,22 @@ function agregar(opcion2) {
         case '1':
             alert("cuantas cervezas quiere agregar")
             newCantidad = parseInt(prompt("ingrese canditdad"))
-            productoA = productoA + newCantidad
+            product1 = product1 + newCantidad
             break
         case '2':
             alert("cuantos vinos quiere agregar")
             newCantidad = parseInt(prompt("ingrese canditdad"))
-            productoB = productoB + newCantidad
+            product2 = product2 + newCantidad
             break
         case '3':
             alert("cuantos Kg de pan quiere agregar")
             newCantidad = parseFloat(prompt("ingrese canditdad"))
-            productoC = productoC + newCantidad
+            product3 = product3 + newCantidad
             break
         case '4':
             alert("cuantos Kg de carne quiere agregar")
             newCantidad = parseFloat(prompt("ingrese canditdad"))
-            productoD = productoD + newCantidad
+            product4 = product4 + newCantidad
             break
     }
 }
@@ -99,67 +125,67 @@ function quitar(opcion3) {
 
     switch (opcion3) {
         case '1':
-            if (productoA == 0) {
+            if (product1 == 0) {
                 alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
                 break
             }
-            alert(`Usted tiene una cantidad de ${productoA} del producto seleccionado, cuantas desea sacar`)
+            alert(`Usted tiene una cantidad de ${product1} del producto seleccionado, cuantas desea sacar`)
             newCantidad = parseInt(prompt("ingrese canditdad"))
-            control = productoA
-            productoA = productoA - newCantidad
-            while (productoA <= -1) {
+            control = product1
+            product1 = product1 - newCantidad
+            while (product1 <= -1) {
                 alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                productoA = control
+                product1 = control
                 newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                productoA = productoA - newCantidad
+                product1 = product1 - newCantidad
             }
             break
         case '2':
-            if (productoB == 0) {
+            if (product2 == 0) {
                 alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
                 break
             }
-            alert(`Usted tiene una cantidad de ${productoB} del producto seleccionado, cuantas desea sacar`)
+            alert(`Usted tiene una cantidad de ${product2} del producto seleccionado, cuantas desea sacar`)
             newCantidad = parseInt(prompt("ingrese canditdad"))
-            control = productoB
-            productoA = productoB - newCantidad
-            while (productoB <= -1) {
+            control = product2
+            product1 = product2 - newCantidad
+            while (product2 <= -1) {
                 alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                productoB = control
+                product2 = control
                 newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                productoB = productoB - newCantidad
+                product2 = product2 - newCantidad
             }
             break
         case '3':
-            if (productoC == 0) {
+            if (product3 == 0) {
                 alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
                 break
             }
-            alert(`Usted tiene una cantidad de ${productoC} del producto seleccionado, cuantas desea sacar`)
+            alert(`Usted tiene una cantidad de ${product3} del producto seleccionado, cuantas desea sacar`)
             newCantidad = parseInt(prompt("ingrese canditdad"))
-            control = productoC
-            productoC = productoC - newCantidad
-            while (productoC <= -1) {
+            control = product3
+            product3 = product3 - newCantidad
+            while (product3 <= -1) {
                 alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                productoC = control
+                product3 = control
                 newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                productoC = productoC - newCantidad
+                product3 = product3 - newCantidad
             }
             break
         case '4':
-            if (productoD == 0) {
+            if (product4 == 0) {
                 alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
                 break
             }
-            alert(`Usted tiene una cantidad de ${productoD} del producto seleccionado, cuantas desea sacar`)
+            alert(`Usted tiene una cantidad de ${product4} del producto seleccionado, cuantas desea sacar`)
             newCantidad = parseInt(prompt("ingrese canditdad"))
-            control = productoD
-            productoD = productoD - newCantidad
-            while (productoD <= -1) {
+            control = product4
+            product4 = product4 - newCantidad
+            while (product4 <= -1) {
                 alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                productoD = control
+                product4 = control
                 newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                productoD = productoD - newCantidad
+                product4 = product4 - newCantidad
             }
             break
         default:
@@ -168,11 +194,11 @@ function quitar(opcion3) {
     }
 }
 
-alert("Si desea finalizar su compra y calcular el costo total elija la opcion 1\nSi desea agregar más productos elija la opción 2\nSi desea eliminar algún producto elija la opción 3")
+alert("Si desea finalizar su compra y calcular el costo total elija la opcion 1\nSi desea agregar más productos al carrito elija la opción 2\nSi desea eliminar algún producto del carrito elija la opción 3")
 
 let opcion = (prompt("Escriba Opción 1, 2 o 3"))
 
-while(opcion != '1' && opcion != '2' && opcion != '3'){
+while (opcion != '1' && opcion != '2' && opcion != '3') {
     opcion = prompt("Elija una opcion opción correcta:\n-1\n-2\n-3")
 }
 
@@ -187,19 +213,19 @@ switch (opcion) {
     case '2':
         alert("Que producto desea agregar")
         let opcion2 = prompt("Elija una opcion\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne")
-        while(opcion2 != '1' && opcion2 != '2' && opcion2 != '3' && opcion2 != '4'){
+        while (opcion2 != '1' && opcion2 != '2' && opcion2 != '3' && opcion2 != '4') {
             opcion2 = prompt("Elija una opcion opción correcta:\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne")
         }
         agregar(opcion2)
-        const mostrarPrecioDos = costoTotal()
-        alert(`El precio total es de $${mostrarPrecioDos}`)
-        console.log(mostrarPrecioDos)
+        const mostrarprice4os = costoTotal()
+        alert(`El precio total es de $${mostrarprice4os}`)
+        console.log(mostrarprice4os)
         break
 
     case '3':
         alert("Que producto desea quitar")
         let opcion3 = (prompt("Elija una opcion\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne"))
-        while(opcion3 != '1' && opcion3 != '2' && opcion3 != '3' && opcion3 != '4'){
+        while (opcion3 != '1' && opcion3 != '2' && opcion3 != '3' && opcion3 != '4') {
             opcion3 = prompt("Elija una opcion opción correcta:\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne")
         }
         quitar(opcion3)
@@ -212,4 +238,4 @@ switch (opcion) {
         alert("Por favor ingrese una opción correcta")
         break
 
-}
+}  
