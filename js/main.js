@@ -61,7 +61,7 @@ function mostrar (products, index){
 } //aqui "el.price" es de type float, al precio cuando guardo lo parseo flotante ¿al concatenarlo se parsea solo?
 
 alert("Los productos cargados Son:\n" + mostrar(products))
-alert("")
+
 
 // ------------------- CARRITO DE COMPRAS - Usuario ---------------------------------//
 
