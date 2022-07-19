@@ -1,3 +1,4 @@
+// desafío generico clase 2
 let numero = prompt('Ingrese un número cualquiera');
 let string = prompt("Ingrese una palabra cualquiera")
 let numeroDos = prompt("Por favor ingrese otro número nuevamente")
@@ -44,3 +45,6 @@ while (edadIn < 25) {
 }
 
 alert("Bienvenido")
+
+//1° Desafio Obligatorio Simulador interactivo
+

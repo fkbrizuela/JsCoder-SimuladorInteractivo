@@ -22,14 +22,12 @@ class Product {
     }
 
     priceIva(array){
-        let impuesto = this.price * 0.21
-        let priceIva = this.price + impuesto
-        return priceIva
+    
+        this.price =  this.price * 1.21
+
+
     }
 
-    descuento(array){
-        
-    }
 }
 
 for (let i = 0; i < cantidad; i++) {
@@ -55,13 +53,15 @@ function mostrar (products, index){
         let seeProduct = ''
 
         products.forEach((el, index)=>{
-        seeProduct +=(index + 1)+"-"+"Nombre: " + el.name + ' - ' + "Precio: " + el.price + "\n"  
+    
+            seeProduct +=(index + 1)+"-"+"Nombre: " + el.name + ' - ' + "Precio: " + el.price + "\n"
     })
     console.log(seeProduct)
     return seeProduct
 } //aqui "el.price" es de type float, al precio cuando guardo lo parseo flotante ¿al concatenarlo se parsea solo?
 
 alert("Los productos cargados Son:\n" + mostrar(products))
+alert("")
 
 // ------------------- CARRITO DE COMPRAS - Usuario ---------------------------------//
 
@@ -69,7 +69,7 @@ alert("Carrito de compras!\nDe los productos de la siguiente lista que desea com
 
 //1° Desafio Obligatorio Simulador interactivo
 
-alert("Ingrese la cantidad de productos de quedesa comprar")
+alert("Ingrese la cantidad de productos de que desea comprar")
 
 let product1 = parseInt(prompt("Cerveza, costo $250 c/u"))
 
