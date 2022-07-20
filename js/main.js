@@ -1,4 +1,4 @@
-//------------------------Desfio complementario - Incorporar Arrays -----------------//
+//------------------------ Desfio complementario - Incorporar Arrays ------------------//
 //------------------------ CARGA DE PRODUCTOS - ADMINISTRADOR -------------------------//
 
 alert("Carga de productos")
@@ -20,41 +20,26 @@ class Product {
         this.price = price
         this.stock = stock
     }
-
-    priceIva(array){
-    
-        this.price =  this.price * 1.21
-
-
+    priceIva(array) {
+        this.price = this.price * 1.21
     }
-
 }
 
 for (let i = 0; i < cantidad; i++) {
 
-
     let nameUser = (prompt("ingrese nombre del producto"))
-
     let priceUser = parseFloat(prompt("ingrese el precio del del producto"))
-
     let stockUser = parseInt(prompt("ingrese la cantidad del producto en stock"))
-
-    products.push(new Product(idProduct, nameUser, priceUser, stockUser))
-
+    products.push(new Product((idProduct + 1), nameUser, priceUser, stockUser))
     idProduct = products.length
-
 }
 
 console.log(products)
 
-
-function mostrar (products, index){
-
-        let seeProduct = ''
-
-        products.forEach((el, index)=>{
-    
-            seeProduct +=(index + 1)+"-"+"Nombre: " + el.name + ' - ' + "Precio: " + el.price + "\n"
+function mostrar(products, index) {
+    let seeProduct = ''
+    products.forEach((el, index) => {
+        seeProduct += (index + 1) + "-" + "Nombre: " + el.name + ' - ' + "Precio: " + el.price + "\n"
     })
     console.log(seeProduct)
     return seeProduct
@@ -62,180 +47,120 @@ function mostrar (products, index){
 
 alert("Los productos cargados Son:\n" + mostrar(products))
 
+// -------- filtrar precio más alto - precio  ----------------------------------------/
+//------- coloco una variable para manejar a gusto el precio más alto a filtrar ------/
 
-// ------------------- CARRITO DE COMPRAS - Usuario ---------------------------------//
+let highPrice = 1000
 
-alert("Carrito de compras!\nDe los productos de la siguiente lista que desea comprar\n"+ mostrar(products))
+let highProduct = products.filter(el => el.price > highPrice)
 
-//1° Desafio Obligatorio Simulador interactivo
+console.log(highProduct)
 
-alert("Ingrese la cantidad de productos de que desea comprar")
+// ------------------- Stock Bajo  ---------------------------------------------------/
 
-let product1 = parseInt(prompt("Cerveza, costo $250 c/u"))
+let lowStock = 5
 
-let product2 = parseInt(prompt("Vino, costo $450 c/u"))
+let lowProduct = products.filter(el => el.stock < lowStock)
 
-let product3 = parseFloat(prompt("Pan, costo $180 x Kg"))
+console.log("Por favor reponga el stock de los siguientes productos")
+console.log(lowProduct)
 
-let product4 = parseFloat(prompt("Carne, costo $1200 x Kg"))
+// ------------------- CARRITO DE COMPRAS - Usuario ----------------------------------//
 
-let newCantidad = 0
+alert("Carrito de compras!\nDe los productos de la siguiente lista que desea comprar\n" + mostrar(products))
 
-function costoTotal() {
+let carrito = [];
+let objCarrito = {}
+let compra = 0
 
-    let price1 = product1 * 250
-    let price2 = product2 * 450
-    let price3 = product3 * 180
-    let price4 = product4 * 1200
-
-    let precioTotal = price1 + price2 + price3 + price4
-
-    return precioTotal
-}
-
-function agregar(opcion2) {
-
-    switch (opcion2) {
-        case '1':
-            alert("cuantas cervezas quiere agregar")
-            newCantidad = parseInt(prompt("ingrese canditdad"))
-            product1 = product1 + newCantidad
-            break
-        case '2':
-            alert("cuantos vinos quiere agregar")
-            newCantidad = parseInt(prompt("ingrese canditdad"))
-            product2 = product2 + newCantidad
-            break
-        case '3':
-            alert("cuantos Kg de pan quiere agregar")
-            newCantidad = parseFloat(prompt("ingrese canditdad"))
-            product3 = product3 + newCantidad
-            break
-        case '4':
-            alert("cuantos Kg de carne quiere agregar")
-            newCantidad = parseFloat(prompt("ingrese canditdad"))
-            product4 = product4 + newCantidad
-            break
+for (const element of products) {
+    compra = parseInt(prompt("Cuanto desea comprar del siguiente producto: " + element.name + " - Precio: " + element.price))
+    objCarrito = {
+        name: element.name,
+        price: element.price,
+        total: compra
+    }
+    if (element.total !== 0) {
+        carrito.push(objCarrito)
     }
 }
 
-function quitar(opcion3) {
-
-    let control = 0
-
-    switch (opcion3) {
-        case '1':
-            if (product1 == 0) {
-                alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
-                break
-            }
-            alert(`Usted tiene una cantidad de ${product1} del producto seleccionado, cuantas desea sacar`)
-            newCantidad = parseInt(prompt("ingrese canditdad"))
-            control = product1
-            product1 = product1 - newCantidad
-            while (product1 <= -1) {
-                alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                product1 = control
-                newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                product1 = product1 - newCantidad
-            }
-            break
-        case '2':
-            if (product2 == 0) {
-                alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
-                break
-            }
-            alert(`Usted tiene una cantidad de ${product2} del producto seleccionado, cuantas desea sacar`)
-            newCantidad = parseInt(prompt("ingrese canditdad"))
-            control = product2
-            product1 = product2 - newCantidad
-            while (product2 <= -1) {
-                alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                product2 = control
-                newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                product2 = product2 - newCantidad
-            }
-            break
-        case '3':
-            if (product3 == 0) {
-                alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
-                break
-            }
-            alert(`Usted tiene una cantidad de ${product3} del producto seleccionado, cuantas desea sacar`)
-            newCantidad = parseInt(prompt("ingrese canditdad"))
-            control = product3
-            product3 = product3 - newCantidad
-            while (product3 <= -1) {
-                alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                product3 = control
-                newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                product3 = product3 - newCantidad
-            }
-            break
-        case '4':
-            if (product4 == 0) {
-                alert("No se puede sacar ninguna cantidad debido a que usted no posee nada de este producto")
-                break
-            }
-            alert(`Usted tiene una cantidad de ${product4} del producto seleccionado, cuantas desea sacar`)
-            newCantidad = parseInt(prompt("ingrese canditdad"))
-            control = product4
-            product4 = product4 - newCantidad
-            while (product4 <= -1) {
-                alert(`No puede quitar a cantidad ingresada, no se puede sacar más de ${control}`)
-                product4 = control
-                newCantidad = parseInt(prompt("por favor vuelva a ingresar la canditdad que desea sacar"))
-                product4 = product4 - newCantidad
-            }
-            break
-        default:
-            alert("Por favor ingrese una opción correcta")
-            break
-    }
+function mostrarCarrito(array) {
+    let seeProduct = ''
+    products.forEach((el, index) => {
+        seeProduct += (index + 1) + "-" + "Nombre: " + el.name + ' - ' + "Precio: " + el.price + "\n" + "cantidad: " + el.total
+    })
+    console.log(seeProduct)
+    return seeProduct
 }
 
-alert("Si desea finalizar su compra y calcular el costo total elija la opcion 1\nSi desea agregar más productos al carrito elija la opción 2\nSi desea eliminar algún producto del carrito elija la opción 3")
+function costoTotal(array) {
 
-let opcion = (prompt("Escriba Opción 1, 2 o 3"))
+    let totalPrice = 0
+    for (const element of array) {
+        totalPrice = totalPrice + (element.price * element.total)
+    }
+    console.log(totalPrice)
+    return totalPrice
+}
+
+
+let opcion = (prompt("Si desea finalizar su compra y calcular el costo total elija la opcion 1\nSi desea agregar más productos al carrito elija la opción 2\nSi desea eliminar algún producto del carrito elija la opción 3\n Escriba Opción 1, 2 o 3"))
 
 while (opcion != '1' && opcion != '2' && opcion != '3') {
-    opcion = prompt("Elija una opcion opción correcta:\n-1\n-2\n-3")
+    opcion = prompt("Elija una opcion opción correcta:\n-1:Calcular Total\n-2:Agregar Producto\n-3:Eliminar producto")
 }
 
 switch (opcion) {
 
     case '1':
-        const mostrarPrecio = costoTotal()
+        const mostrarPrecio = costoTotal(carrito)
         alert(`El precio total es de $${mostrarPrecio}`)
         console.log(mostrarPrecio)
         break
 
     case '2':
-        alert("Que producto desea agregar")
-        let opcion2 = prompt("Elija una opcion\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne")
-        while (opcion2 != '1' && opcion2 != '2' && opcion2 != '3' && opcion2 != '4') {
-            opcion2 = prompt("Elija una opcion opción correcta:\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne")
-        }
-        agregar(opcion2)
-        const mostrarprice4os = costoTotal()
-        alert(`El precio total es de $${mostrarprice4os}`)
-        console.log(mostrarprice4os)
-        break
+        alert("Su lista de productos es " + mostrarCarrito(carrito) + "\nDe la sieguiente lista que producto desea agregar" + "\n" + mostrar(products))
+let newCompra = 0
+let newCarrito = []
+let objCarritoDos = {}
+for (const element of products) {
+    newCompra = parseInt(prompt("Cuanto desea agregar del siguiente producto: " + element.name + " - Precio: " + element.price))
+    objCarritoDos = {
+        name: element.name,
+        price: element.price,
+        total: element.total + newCompra
+    }
 
-    case '3':
-        alert("Que producto desea quitar")
-        let opcion3 = (prompt("Elija una opcion\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne"))
-        while (opcion3 != '1' && opcion3 != '2' && opcion3 != '3' && opcion3 != '4') {
-            opcion3 = prompt("Elija una opcion opción correcta:\n1_Cerveza\n2_Vino\n3_Pan\n4_Carne")
-        }
-        quitar(opcion3)
-        const mostrarPrecioTres = costoTotal()
-        alert(`El precio total es de $${mostrarPrecioTres}`)
-        console.log(mostrarPrecioTres)
-        break
+    newCarrito.push(objCarritoDos)
+}
 
-    default:
-        alert("Por favor ingrese una opción correcta")
-        break
+const mostrarPrecioDos = costoTotal(newCarrito)
+alert(`El precio total es de $${mostrarPrecioDos}`)
+console.log(mostrarPrecioDos)
+break
 
-}  
+case '3':
+alert("De su de lista de productos, que producto desea quitar" + "\n" + mostrarCarrito(carrito))
+let offCompra = 0
+let newCarritoDos = []
+let objCarritoTres = {}
+for (const element of carrito) {
+    offCompra = parseInt(prompt("Cuanto desea agregar del siguiente producto: " + element.name + "\n- Precio: " + element.price))
+    objCarritoTres = {
+        name: element.name,
+        price: element.price,
+        total: element.total - offCompra
+    }
+    newCarritoDos.push(objCarritoTres)
+}
+const mostrarPrecioTres = costoTotal(newCarritoDos)
+alert(`El precio total es de $${mostrarPrecioTres}`)
+console.log(mostrarPrecioTres)
+break
+
+default:
+alert("Por favor ingrese una opción correcta")
+break
+
+}
