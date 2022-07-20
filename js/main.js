@@ -65,6 +65,14 @@ let lowProduct = products.filter(el => el.stock < lowStock)
 console.log("Por favor reponga el stock de los siguientes productos")
 console.log(lowProduct)
 
+// ------------------- filtrado de productos  -----------------------------------------//
+
+let busqueda = prompt("ingrese el nombre (completo o parcialmente) del producto que desea buscar")
+const findProduct = products.filter((productos)=>productos.name.includes(busqueda.toUpperCase()))
+console.log(findProduct.name+" la cantidad del mismo es: "+findProduct.stock)
+
+
+
 // ------------------- CARRITO DE COMPRAS - Usuario ----------------------------------//
 
 alert("Carrito de compras!\nDe los productos de la siguiente lista que desea comprar\n" + mostrar(products))
@@ -86,12 +94,12 @@ for (const element of products) {
 }
 
 function mostrarCarrito(array) {
-    let seeProduct = ''
-    products.forEach((el, index) => {
-        seeProduct += (index + 1) + "-" + "Nombre: " + el.name + ' - ' + "Precio: " + el.price + "\n" + "cantidad: " + el.total
+    let verProduct = ''
+    carrito.forEach((el, index) => {
+        verProduct += (index + 1) + "-" + "Nombre: " + el.name + ' - ' + "Precio: " + el.price + " - " + "cantidad: " + el.total + "\n"
     })
-    console.log(seeProduct)
-    return seeProduct
+    console.log(verProduct)
+    return verProduct
 }
 
 function costoTotal(array) {
@@ -124,7 +132,7 @@ switch (opcion) {
 let newCompra = 0
 let newCarrito = []
 let objCarritoDos = {}
-for (const element of products) {
+for (const element of carrito) {
     newCompra = parseInt(prompt("Cuanto desea agregar del siguiente producto: " + element.name + " - Precio: " + element.price))
     objCarritoDos = {
         name: element.name,
@@ -146,7 +154,7 @@ let offCompra = 0
 let newCarritoDos = []
 let objCarritoTres = {}
 for (const element of carrito) {
-    offCompra = parseInt(prompt("Cuanto desea agregar del siguiente producto: " + element.name + "\n- Precio: " + element.price))
+    offCompra = parseInt(prompt("Cuanto desea quitar del siguiente producto: " + element.name + "\n- Precio: " + element.price))
     objCarritoTres = {
         name: element.name,
         price: element.price,
