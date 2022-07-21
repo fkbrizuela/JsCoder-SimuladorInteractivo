@@ -43,7 +43,7 @@ function mostrar(products, index) {
     })
     console.log(seeProduct)
     return seeProduct
-} //aqui "el.price" es de type float, al precio cuando guardo lo parseo flotante ¿al concatenarlo se parsea solo?
+} 
 
 alert("Los productos cargados Son:\n" + mostrar(products))
 
@@ -68,9 +68,9 @@ console.log(lowProduct)
 // ------------------- filtrado de productos  -----------------------------------------//
 
 let busqueda = prompt("ingrese el nombre (completo o parcialmente) del producto que desea buscar")
+console.log(busqueda)
 const findProduct = products.filter((productos)=>productos.name.includes(busqueda.toUpperCase()))
-console.log(findProduct.name+" la cantidad del mismo es: "+findProduct.stock)
-
+console.log(findProduct)
 
 
 // ------------------- CARRITO DE COMPRAS - Usuario ----------------------------------//
